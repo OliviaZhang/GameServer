@@ -5,18 +5,19 @@ from pymongo import MongoClient
 from mongoengine import connect
 import mongoengine
 from django.conf import settings
+from models import *
 
 def index(request):
     conn = mongoengine.connect(settings._MONGODB_NAME, host=settings._MONGODB_DATABASE_HOST, port=settings._MONGODB_PORT)
     db = conn.olivia
-    collection = db.game
+    collection = db.author
     template = loader.get_template('polls/index.html')
     context = {
         'records': collection.find()
     }
+    author = Author(author = 'test@title.com',text = 'test content')
+    author.save()
     return HttpResponse(template.render(context, request))
-    #for doc in  collection.find():
-    #    return HttpResponse( doc['_id'])
 
 def detail(request, question_id):
     return HttpResponse("You are looking at question %s." % question_id)
