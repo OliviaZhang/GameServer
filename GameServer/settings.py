@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 from django.conf.global_settings import TEMPLATE_DIRS
+import mongoengine
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -77,8 +78,7 @@ WSGI_APPLICATION = 'GameServer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': '',
     }
 }
 
@@ -143,3 +143,17 @@ TEMPLATES = [
     },
 ]
 
+
+_MONGODB_USER = 'olivia'
+_MONGODB_PASSWD = 'gl9j8724'
+_MONGODB_PORT = 35965
+_MONGODB_HOST = 'ds035965.mongolab.com'
+_MONGODB_NAME = 'olivia'
+_MONGODB_DATABASE_HOST = \
+    'mongodb://%s:%s@%s/%s' \
+    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_NAME)
+
+
+AUTHENTICATION_BACKENDS = (
+    'mongoengine.django.auth.MongoEngineBackend',
+)

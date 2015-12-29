@@ -1,7 +1,7 @@
-{% if questions %}
+{% if records %}
 	<ul>
-	{% for question in questions %}
-		<li><a href="/polls/{{question.id}}">{{question.text}}</a></li>
+	{% for record in records %}
+		<li><p>{{record.system.objectA.a1}}</p></li>
 	{% endfor %}
 	</ul>
 {% else %}
