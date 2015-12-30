@@ -17,6 +17,7 @@ def index(request):
     }
     #author = Author(author = 'test@title.com',text = 'test content')
     #author.save()
+    ''' save the game obj into db
     objectA = ObjectA(a1=545, a2=2, a3=4553, a4=45, a5=566, a6=6)
     objectB = ObjectB(b1=['ssfhfgh'], b2=2, b3=35, b4=4444)
     objectC = ObjectC(c1=14555, c2=26, c3=3)
@@ -24,6 +25,7 @@ def index(request):
     system = System(objectA=objectA, objectB=objectB, objectC=objectC, objectD=[objectD], attr1=1, attr2=2, attr3=3, attr4=4, attr5=5)
     game = Game(system=system)
     game.save()
+    '''
     
     return HttpResponse(template.render(context, request))
 

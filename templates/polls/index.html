@@ -1,7 +1,19 @@
 {% if records %}
 	<ul>
 	{% for record in records %}
-		<li><p>{{record}}</p></li>
+			<ul>{{record.system}}
+				{% for obj_key, obj_value in record.system.items %}
+				<li>dd:{{obj_key}}:  {{obj_value}} {{type(obj_value)}} 
+					
+							<ul>
+							{% for attr_key,attr_value in obj_value.items %}
+								<li>{{attr_key}}: {{attr_value}}</li>
+							{% endfor %}
+							</ul>
+					
+				</li>
+				{% endfor %}
+			</ul>
 	{% endfor %}
 	</ul>
 {% else %}
