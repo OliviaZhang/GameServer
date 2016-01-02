@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 from django.conf.global_settings import TEMPLATE_DIRS
 import mongoengine
+import rest_framework
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,7 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework'
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10
+}
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -78,7 +85,11 @@ WSGI_APPLICATION = 'GameServer.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'example',
+        'USER': 'root',
+        'PASSWORD': 'gl9j8724',
+        'HOST': '127.0.0.1',   # Or an IP Address that your DB is hosted on
     }
 }
 
@@ -155,5 +166,6 @@ _MONGODB_DATABASE_HOST = \
 
 
 AUTHENTICATION_BACKENDS = (
-    'mongoengine.django.auth.MongoEngineBackend',
+    #'mongoengine.django.auth.MongoEngineBackend',
+    'django.contrib.auth.backends.ModelBackend',
 )
